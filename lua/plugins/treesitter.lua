@@ -9,9 +9,14 @@ return {
         "javascript",
         "typescript",
         "html",
+        "tsx",
         "css",
         "lua",
         "json",
+        "astro",
+        "scss",
+        "lua",
+        "markdown",
       },                                           -- Menambahkan json
       highlight = {
         enable = true,                             -- Aktifkan highlighting untuk semua bahasa

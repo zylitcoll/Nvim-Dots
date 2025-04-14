@@ -3,6 +3,8 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "nvimtools/none-ls.nvim",
+        "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
         local lspconfig = require("lspconfig")
@@ -65,9 +67,10 @@ return {
         -- Svelte
         lspconfig.svelte.setup({})
 
-        -- Astro
-        lspconfig.astro.setup({})
-
+        -- Astro LSP
+        lspconfig.astro.setup({
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
 
         -- Python
         lspconfig.pyright.setup({
@@ -75,7 +78,26 @@ return {
         })
 
 
-
+        -- Setup lua_ls (LSP untuk Lua)
+        lspconfig.lua_ls.setup({
+            settings = {
+                Lua = {
+                    runtime = {
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
+                    },
+                    telemetry = {
+                        enable = false,
+                    },
+                },
+            },
+        })
 
 
         -- Lainnya
