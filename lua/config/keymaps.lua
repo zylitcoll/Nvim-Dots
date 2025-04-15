@@ -7,7 +7,7 @@ vim.api.nvim_set_keymap('n', '<C-z>', 'u', { noremap = true, silent = true })   
 vim.api.nvim_set_keymap('n', '<C-y>', '<C-r>', { noremap = true, silent = true }) -- Redo
 
 -- Undo (Insert Mode)
-vim.api.nvim_set_keymap('i', '<C-z>', '<Esc>ua', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-z>', '<Esc>u', { noremap = true, silent = true })
 
 -- Redo (Insert Mode)
-vim.api.nvim_set_keymap('i', '<C-y>', '<Esc><C-r>a', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-y>', '<Esc><C-r>', { noremap = true, silent = true })
