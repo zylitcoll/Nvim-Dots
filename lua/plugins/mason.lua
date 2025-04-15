@@ -16,7 +16,7 @@ return {
                     "vtsls",
                     "volar",
                     "svelte",
-                    "astro",
+                    -- "astro",
                     "html",
                     "cssls",
                     "jsonls",
@@ -31,13 +31,13 @@ return {
         end,
     },
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim", -- ✅ opsional tapi berguna
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-tool-installer").setup({
                 ensure_installed = {
-                    "prettier",   -- ✅ formatter
-                    "eslint-lsp", -- ✅ linter (non-LSP)
+                    "prettier",
+                    "eslint-lsp",
                     "stylua",
                     "php-cs-fixer",
                     "black",
@@ -45,7 +45,7 @@ return {
                 automatic_installation = true,
                 auto_update = false,
                 run_on_start = true,
-                start_delay = 3000, -- ms
+                start_delay = 3000,
             })
         end,
     },

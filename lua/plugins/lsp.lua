@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"nvimtools/none-ls.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
@@ -78,24 +77,16 @@ return {
 
 		-- Astro
 		lspconfig.astro.setup({
+			filetypes = { "astro" },
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			root_dir = lspconfig.util.root_pattern("package.json", ".git"),
 			on_attach = function(client, bufnr)
-				-- opsional: keymaps khusus
-				local map = function(mode, lhs, rhs)
-					vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
-				end
-
-				map("n", "gd", vim.lsp.buf.definition)
-				map("n", "K", vim.lsp.buf.hover)
-				map("n", "<leader>rn", vim.lsp.buf.rename)
-
 				if client.server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end
 			end,
-			filetypes = { "astro" },
-			cmd = { "astro-ls", "--stdio" },
-			root_dir = lspconfig.util.root_pattern("package.json", ".git"),
 		})
+
 		-- Vue 3
 		lspconfig.volar.setup({
 			filetypes = { "typescript", "javascript", "vue" },

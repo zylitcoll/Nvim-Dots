@@ -25,6 +25,9 @@ return {
       indent = {
         enable = true, -- Aktifkan indentasi otomatis menggunakan Tree-sitter
       },
+      matchup = {
+        enable = true, -- Menandai pasangan tanda kurung
+      },
     })
   end,
 }

@@ -71,7 +71,6 @@ return {
                     enable = true,
                 },
             })
-            vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle Explorer" })
         end,
     },
 
@@ -153,7 +152,6 @@ return {
                     border = "curved",
                 },
             })
-            vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
         end,
     },
 }

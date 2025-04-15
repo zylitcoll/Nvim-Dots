@@ -1,5 +1,6 @@
 -- Set up VSCode-like options
 vim.opt.number = true
+vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.ignorecase = true
@@ -12,3 +13,4 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.showmatch = true
