@@ -1,4 +1,5 @@
 -- Set up VSCode-like options
+vim.opt.swapfile = true
 vim.opt.number = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true

@@ -12,5 +12,29 @@ vim.api.nvim_set_keymap("i", "<C-u>", "<Esc>u", { noremap = true, silent = true 
 -- Redo (Insert Mode)
 vim.api.nvim_set_keymap("i", "<C-y>", "<Esc><C-r>", { noremap = true, silent = true })
 
+-- Normal mode: Pindah baris ke bawah
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+
+-- Normal mode: Pindah baris ke atas
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+
+-- Normal mode: Duplikat baris ke bawah
+vim.keymap.set("n", "<A-J>", "yyp", { desc = "Copy line below" })
+
+-- Normal mode: Duplikat baris ke atas
+vim.keymap.set("n", "<A-K>", "yyP", { desc = "Copy line above" })
+
+-- Visual mode: Pindahkan blok ke bawah
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
+
+-- Visual mode: Pindahkan blok ke atas
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
+
+-- Visual mode: Duplikat blok ke bawah
+vim.keymap.set("v", "<A-J>", "y'>p`[V`]", { desc = "Copy block below" })
+
+-- Visual mode: Duplikat blok ke atas
+vim.keymap.set("v", "<A-K>", "y'<P`[V`]", { desc = "Copy block above" })
+
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle Explorer" })
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
