@@ -30,11 +30,30 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
 -- Visual mode: Pindahkan blok ke atas
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
 
--- Visual mode: Duplikat blok ke bawah
-vim.keymap.set("v", "<A-J>", "y'>p`[V`]", { desc = "Copy block below" })
+-- Duplikat blok ke bawah (Visual mode)
+vim.keymap.set("v", "<A-J>", ":<C-u>lua DuplicateVisualBlock('down')<CR>", { desc = "Duplicate block down" })
 
--- Visual mode: Duplikat blok ke atas
-vim.keymap.set("v", "<A-K>", "y'<P`[V`]", { desc = "Copy block above" })
+-- Duplikat blok ke atas (Visual mode)
+vim.keymap.set("v", "<A-K>", ":<C-u>lua DuplicateVisualBlock('up')<CR>", { desc = "Duplicate block up" })
+
+function DuplicateVisualBlock(direction)
+	-- Simpan posisi visual selection
+	local start_line = vim.fn.line("'<")
+	local end_line = vim.fn.line("'>")
+
+	-- Ambil isi baris yang diseleksi
+	local lines = vim.fn.getline(start_line, end_line)
+
+	-- Duplikat ke atas atau ke bawah
+	if direction == "down" then
+		vim.fn.append(end_line, lines)
+	elseif direction == "up" then
+		vim.fn.append(start_line - 1, lines)
+	end
+
+	-- Kembalikan mode visual ke blok baru
+	vim.cmd("normal! gv")
+end
 
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle Explorer" })
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
