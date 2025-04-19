@@ -3,14 +3,16 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true 
 
 -- Save file in Insert mode (Ctrl+S)
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-u>", "u", { noremap = true, silent = true }) -- Undo
-vim.api.nvim_set_keymap("n", "<C-y>", "<C-r>", { noremap = true, silent = true }) -- Redo
 
 -- Undo (Insert Mode)
 vim.api.nvim_set_keymap("i", "<C-u>", "<Esc>u", { noremap = true, silent = true })
 
+-- slect all
+vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
+
 -- Redo (Insert Mode)
-vim.api.nvim_set_keymap("i", "<C-y>", "<Esc><C-r>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-r>", "<Esc><C-r>", { noremap = true, silent = true })
 
 -- Normal mode: Pindah baris ke bawah
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })

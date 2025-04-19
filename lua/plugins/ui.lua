@@ -1,67 +1,17 @@
 return {
-	-- 🌈 Tema Catppuccin
+	-- Theme
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha", -- mocha, macchiato, frappe, latte
-				integrations = {
-					treesitter = true,
-					telescope = true,
-					nvimtree = true,
-					bufferline = true,
-					gitsigns = true,
-				},
-			})
-			vim.cmd.colorscheme("catppuccin-mocha")
-		end,
+			require("catppuccin").setup()
+			vim.cmd.colorscheme("catppuccin")
+		end
 	},
 
-	-- 🧠 Git signs
-	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup({
-				signs = {
-					add = { text = "│" },
-					change = { text = "│" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-				},
-			})
-		end,
-	},
 
-	-- 📦 Status Line (bawah)
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin",
-					icons_enabled = true,
-					section_separators = { left = "", right = "" },
-					component_separators = { left = "", right = "" },
-					globalstatus = true,
-				},
-			})
-		end,
-	},
-
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {
-			indent = { char = "│" },
-			scope = { enabled = true },
-		},
-	},
-
-	-- 📁 Sidebar (Explorer)
+	--  Sidebar (Explorer)
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -87,7 +37,7 @@ return {
 				on_attach = function(bufnr)
 					local api = require("nvim-tree.api")
 
-					-- ✅ Panggil keymap default dulu
+					--  Panggil keymap default dulu
 					api.config.mappings.default_on_attach(bufnr)
 
 					local function opts(desc)
@@ -117,71 +67,85 @@ return {
 		end,
 	},
 
-	-- 🔍 Fuzzy Finder (Telescope + fzf)
+	-- Statusline
 	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				cond = vim.fn.executable("make") == 1,
-			},
-		},
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			local telescope = require("telescope")
-			telescope.setup({
-				defaults = {
-					layout_config = {
-						horizontal = {
-							preview_width = 0.55,
-						},
-					},
-					mappings = {
-						i = {
-							["<C-j>"] = "move_selection_next",
-							["<C-k>"] = "move_selection_previous",
-						},
-					},
-				},
+			require("lualine").setup({
+				options = { theme = "catppuccin" }
 			})
-			pcall(telescope.load_extension, "fzf")
-		end,
+		end
 	},
 
+	-- Bufferline (Tab navigasi)
 	{
 		"akinsho/bufferline.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
+		version = "*",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("bufferline").setup({
-				options = {
-					mode = "buffers",
-					show_close_icon = false,
-					show_buffer_close_icons = true,
-					separator_style = "slant",
-					always_show_bufferline = true,
-					color_icons = true,
-					diagnostics = "nvim_lsp",
-					diagnostics_update_in_insert = false,
-					diagnostics_indicator = function(count, level, _, _)
-						local icon = level:match("error") and " " or " "
-						return " " .. icon .. count
-					end,
-					offsets = {
-						{
-							filetype = "NvimTree",
-							text = "File Explorer",
-							highlight = "Directory",
-							text_align = "left",
-							separator = true,
-						},
-					},
-				},
-			})
-		end,
+			require("bufferline").setup()
+		end
 	},
 
-	-- 🖥️ Terminal pop-up
+	-- Indent guides
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {}
+	},
+
+	-- Dashboard
+	{
+		"goolord/alpha-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("alpha").setup(require("alpha.themes.startify").config)
+		end
+	},
+
+	-- Notification
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			vim.notify = require("notify")
+		end
+	},
+
+	-- Fancy UI for command/message/LSP
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+			},
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify"
+		}
+	},
+
+	-- Fuzzy finder
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.3",
+		dependencies = { "nvim-lua/plenary.nvim" }
+	},
+
+	-- Which-key
+	{
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup()
+		end
+	},
+
+
+	--  Terminal pop-up
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
