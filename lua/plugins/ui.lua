@@ -7,9 +7,8 @@ return {
 		config = function()
 			require("catppuccin").setup()
 			vim.cmd.colorscheme("catppuccin")
-		end
+		end,
 	},
-
 
 	--  Sidebar (Explorer)
 	{
@@ -73,9 +72,9 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
-				options = { theme = "catppuccin" }
+				options = { theme = "catppuccin" },
 			})
-		end
+		end,
 	},
 
 	-- Bufferline (Tab navigasi)
@@ -85,14 +84,14 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("bufferline").setup()
-		end
+		end,
 	},
 
 	-- Indent guides
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {}
+		opts = {},
 	},
 
 	-- Dashboard
@@ -101,7 +100,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("alpha").setup(require("alpha.themes.startify").config)
-		end
+		end,
 	},
 
 	-- Notification
@@ -109,7 +108,7 @@ return {
 		"rcarriga/nvim-notify",
 		config = function()
 			vim.notify = require("notify")
-		end
+		end,
 	},
 
 	-- Fancy UI for command/message/LSP
@@ -125,15 +124,15 @@ return {
 		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify"
-		}
+			"rcarriga/nvim-notify",
+		},
 	},
 
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
-		dependencies = { "nvim-lua/plenary.nvim" }
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
 	-- Which-key
@@ -141,9 +140,8 @@ return {
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup()
-		end
+		end,
 	},
-
 
 	--  Terminal pop-up
 	{
@@ -159,5 +157,12 @@ return {
 				},
 			})
 		end,
+	},
+
+	-- auto command
+	{
+		"numToStr/Comment.nvim",
+		opts = {}, -- langsung auto setup
+		lazy = false,
 	},
 }

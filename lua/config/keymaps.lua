@@ -59,3 +59,16 @@ end
 
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle Explorer" })
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+
+local api = require("Comment.api")
+
+-- Normal mode: comment 1 baris
+vim.keymap.set("n", "<C-;>", function()
+	api.toggle.linewise.current()
+end, { noremap = true, silent = true })
+
+-- Visual mode: comment blok terpilih
+vim.keymap.set("v", "<C-;>", "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", {
+	noremap = true,
+	silent = true,
+})

@@ -2,7 +2,7 @@
 vim.opt.swapfile = true
 vim.opt.number = true
 vim.opt.clipboard = "unnamedplus"
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.mouse = "a"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
